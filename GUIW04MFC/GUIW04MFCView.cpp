@@ -52,7 +52,7 @@ BOOL CGUIW04MFCView::PreCreateWindow(CREATESTRUCT& cs)
 
 // CGUIW04MFCView 그리기
 
-void CGUIW04MFCView::OnDraw(CDC* /*pDC*/)
+void CGUIW04MFCView::OnDraw(CDC* pDC)
 {
 	CGUIW04MFCDoc* pDoc = GetDocument();
 	ASSERT_VALID(pDoc);
@@ -60,6 +60,7 @@ void CGUIW04MFCView::OnDraw(CDC* /*pDC*/)
 		return;
 
 	// TODO: 여기에 원시 데이터에 대한 그리기 코드를 추가합니다.
+	pDC->Ellipse(100, 100, 200, 200);
 }
 
 
@@ -109,6 +110,8 @@ CGUIW04MFCDoc* CGUIW04MFCView::GetDocument() const // 디버그되지 않은 버
 void CGUIW04MFCView::OnLButtonDown(UINT nFlags, CPoint point)
 {
 	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
-
+	CClientDC dc(this);
+	dc.Ellipse(point.x - 30, point.y - 30,
+		point.x + 30, point.y + 30);
 	CView::OnLButtonDown(nFlags, point);
 }
