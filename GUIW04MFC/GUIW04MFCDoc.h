@@ -8,7 +8,29 @@
 
 class CGUIW04MFCDoc : public CDocument
 {
-protected: // serialization에서만 만들어집니다.
+protected:
+	CArray<CPoint, CPoint> Points;
+
+public :
+	int getPointsCount() { return (int)Points.GetCount(); }
+	void addPoint(CPoint p) { 
+		Points.Add(p); 
+		SetModifiedFlag();
+	}
+	CPoint GetPoint(int index) { return Points[index]; }
+
+//protected:
+//	CPoint Pos = CPoint(-100,-100);
+//public:
+//	CPoint GetPos() {
+//		return Pos;
+//	}
+//	
+//	void SetPos(CPoint p) {
+//		Pos = p;
+//		SetModifiedFlag();
+//	}
+
 	CGUIW04MFCDoc() noexcept;
 	DECLARE_DYNCREATE(CGUIW04MFCDoc)
 
