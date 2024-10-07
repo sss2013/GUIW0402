@@ -28,6 +28,8 @@ BEGIN_MESSAGE_MAP(CGUIW04MFCView, CView)
 	ON_COMMAND(ID_FILE_PRINT_DIRECT, &CView::OnFilePrint)
 	ON_COMMAND(ID_FILE_PRINT_PREVIEW, &CView::OnFilePrintPreview)
 	ON_WM_LBUTTONDOWN()
+	ON_WM_RBUTTONDOWN()
+	ON_WM_MOUSEMOVE()
 END_MESSAGE_MAP()
 
 // CGUIW04MFCView 생성/소멸
@@ -128,4 +130,33 @@ void CGUIW04MFCView::OnLButtonDown(UINT nFlags, CPoint point)
 	Invalidate();
 
 	CView::OnLButtonDown(nFlags, point);
+}
+
+void CGUIW04MFCView::OnRButtonDown(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	/*CClientDC dc(this);
+	dc.Ellipse(point.x - 30, point.y - 30,
+		point.x + 30, point.y + 30);*/
+
+		/*GetDocument()->SetPos(point);*/
+	GetDocument()->RemoveLast();
+	Invalidate();
+
+	CView::OnRButtonDown(nFlags, point);
+}
+void CGUIW04MFCView::OnMouseMove(UINT nFlags, CPoint point)
+{
+	// TODO: 여기에 메시지 처리기 코드를 추가 및/또는 기본값을 호출합니다.
+	/*CClientDC dc(this);
+	dc.Ellipse(point.x - 30, point.y - 30,
+		point.x + 30, point.y + 30);*/
+
+		/*GetDocument()->SetPos(point);*/
+	if (nFlags & MK_LBUTTON) {
+		GetDocument()->addPoint(point);
+		Invalidate();
+	}
+
+	CView::OnMouseMove(nFlags, point);
 }

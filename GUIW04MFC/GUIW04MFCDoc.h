@@ -18,6 +18,13 @@ public :
 		SetModifiedFlag();
 	}
 	CPoint GetPoint(int index) { return Points[index]; }
+	void RemoveLast() {
+		if (Points.GetCount() > 0) {
+			Points.RemoveAt(Points.GetCount() - 1);
+			SetModifiedFlag();
+
+		}
+	}
 
 //protected:
 //	CPoint Pos = CPoint(-100,-100);
